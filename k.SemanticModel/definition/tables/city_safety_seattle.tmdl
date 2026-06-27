@@ -1,0 +1,115 @@
+table city_safety_seattle
+	lineageTag: 08a0b453-d676-4644-b5d3-9a79287c269d
+	sourceLineageTag: [dbo].[city_safety_seattle]
+
+	column dataType
+		dataType: string
+		lineageTag: 8afb3d28-f855-49b7-ad97-755f2d3101e5
+		sourceLineageTag: dataType
+		summarizeBy: none
+		sourceColumn: dataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataSubtype
+		dataType: string
+		lineageTag: c3e35879-f57a-4de6-8581-d34f7d1671ce
+		sourceLineageTag: dataSubtype
+		summarizeBy: none
+		sourceColumn: dataSubtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column dateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e338d3b0-4101-468b-a25f-c7550150b471
+		sourceLineageTag: dateTime
+		summarizeBy: none
+		sourceColumn: dateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 370ac94c-5025-4a4a-9cc5-99ab32b0107e
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column subcategory
+		dataType: string
+		lineageTag: 35c59330-bdcf-49e8-83bd-c0c99f8cb3fe
+		sourceLineageTag: subcategory
+		summarizeBy: none
+		sourceColumn: subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: b08300bb-c665-471b-9417-8a38cb0b848d
+		sourceLineageTag: status
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: bf02bf7b-e5a7-49e7-a033-63ac5a5069e6
+		sourceLineageTag: address
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: abdcb29e-8c30-4e16-8f3f-5cc18e8759d6
+		sourceLineageTag: latitude
+		summarizeBy: sum
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 7b3b674d-3127-4431-9cab-a9c04e2bb005
+		sourceLineageTag: longitude
+		summarizeBy: sum
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column source
+		dataType: string
+		lineageTag: cee4658d-0a6d-4d7b-a4b9-617abffe5b5c
+		sourceLineageTag: source
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column extendedProperties
+		dataType: string
+		lineageTag: c2ada35a-d3dd-4158-b12f-354754d5ce7c
+		sourceLineageTag: extendedProperties
+		summarizeBy: none
+		sourceColumn: extendedProperties
+
+		annotation SummarizationSetBy = Automatic
+
+	partition city_safety_seattle = entity
+		mode: directLake
+		source
+			entityName: city_safety_seattle
+			schemaName: dbo
+			expressionSource: 'DirectLake - practclakehouse'
+

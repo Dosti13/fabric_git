@@ -1,0 +1,67 @@
+table public_holidays
+	lineageTag: c275d6e2-5ec4-47ee-ae4b-f827bcd6bce4
+	sourceLineageTag: [dbo].[public_holidays]
+
+	column countryOrRegion
+		dataType: string
+		lineageTag: 46ff4d66-edfb-4338-bed2-167836841ec4
+		sourceLineageTag: countryOrRegion
+		summarizeBy: none
+		sourceColumn: countryOrRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column holidayName
+		dataType: string
+		lineageTag: a654ff56-7bab-4207-b6b9-15c15ebc30be
+		sourceLineageTag: holidayName
+		summarizeBy: none
+		sourceColumn: holidayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column normalizeHolidayName
+		dataType: string
+		lineageTag: 8a8e69fc-3f1f-4b86-91ed-a6cc48705a97
+		sourceLineageTag: normalizeHolidayName
+		summarizeBy: none
+		sourceColumn: normalizeHolidayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column isPaidTimeOff
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 87a979fa-f5bb-4e23-8222-ee6041a770a3
+		sourceLineageTag: isPaidTimeOff
+		summarizeBy: none
+		sourceColumn: isPaidTimeOff
+
+		annotation SummarizationSetBy = Automatic
+
+	column countryRegionCode
+		dataType: string
+		lineageTag: ddd3de9c-fbdb-402e-b157-efa02d137671
+		sourceLineageTag: countryRegionCode
+		summarizeBy: none
+		sourceColumn: countryRegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a643e632-475e-4b7c-844a-e83bb17dfb7d
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition public_holidays = entity
+		mode: directLake
+		source
+			entityName: public_holidays
+			schemaName: dbo
+			expressionSource: 'DirectLake - practclakehouse'
+

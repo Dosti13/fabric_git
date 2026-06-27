@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDatabase",
+    "displayName": "kqlpractic",
+    "description": "kqlpractic"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8879528f-2bb1-be9e-4efc-0b61ef838f8b"
+  }
+}

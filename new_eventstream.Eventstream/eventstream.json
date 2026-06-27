@@ -1,0 +1,221 @@
+{
+  "sources": [
+    {
+      "id": "d2f0fcb7-edbc-4a85-a996-3e4255fb8450",
+      "name": "sample-stockmarket",
+      "type": "SampleData",
+      "properties": {
+        "type": "StockMarket"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "60808e4f-2820-4386-9eb7-2fc38f3d33da",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "8879528f-2bb1-be9e-4efc-0b61ef838f8b",
+        "databaseName": "kqlpractic",
+        "tableName": "Stocks",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "GroupBy"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "GroupBy",
+          "schema": {
+            "columns": [
+              {
+                "name": "time",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "COUNT_All",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Window_End_Time",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "2e31afa9-a5a1-4606-bf94-2492ccab0a40",
+      "name": "new_eventstream-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "sample-stockmarket"
+        }
+      ]
+    }
+  ],
+  "operators": [
+    {
+      "name": "GroupBy",
+      "type": "GroupBy",
+      "inputNodes": [
+        {
+          "name": "new_eventstream-stream"
+        }
+      ],
+      "properties": {
+        "aggregations": [
+          {
+            "aggregateFunction": "Count",
+            "arguments": [],
+            "column": {
+              "expressionType": "Wildcard"
+            },
+            "alias": "COUNT_All"
+          }
+        ],
+        "groupBy": [
+          {
+            "expressionType": "ColumnReference",
+            "node": null,
+            "columnName": "time",
+            "columnPathSegments": []
+          }
+        ],
+        "window": {
+          "type": "Tumbling",
+          "properties": {
+            "duration": {
+              "value": 5,
+              "unit": "Second"
+            },
+            "offset": {
+              "value": 0,
+              "unit": "Second"
+            }
+          }
+        }
+      },
+      "inputSchemas": [
+        {
+          "name": "new_eventstream-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "time",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "symbol",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "sector",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "securityType",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "bidPrice",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "bidSize",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "askPrice",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "askSize",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "lastSalePrice",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "lastSaleSize",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "volume",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "marketPercent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "seq",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "lastUpdated",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "lastSaleTime",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "compatibilityLevel": "1.1"
+}
